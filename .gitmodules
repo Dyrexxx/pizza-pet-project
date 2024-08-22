@@ -1,0 +1,6 @@
+[submodule "restaurant"]
+	path = restaurant
+	url = https://github.com/Dyrexxx/restaurant
+[submodule "main-warehouse"]
+	path = main-warehouse
+	url = https://github.com/Dyrexxx/main-warehouse
