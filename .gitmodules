@@ -4,3 +4,6 @@
 [submodule "main-warehouse"]
 	path = main-warehouse
 	url = https://github.com/Dyrexxx/main-warehouse
+[submodule "products"]
+	path = products
+	url = https://github.com/Dyrexxx/products.git
