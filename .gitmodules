@@ -7,3 +7,6 @@
 [submodule "products"]
 	path = products
 	url = https://github.com/Dyrexxx/products.git
+[submodule "maker-menu"]
+	path = maker-menu
+	url = https://github.com/Dyrexxx/maker-menu.git
