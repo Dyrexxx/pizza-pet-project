@@ -1,0 +1,59 @@
+services:
+  database:
+    image: postgres:16.3
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "Dimik2001."
+    ports:
+      - "5432:5432"
+  maker-menu:
+    image: pizza-project/maker-menu:0.0.1-SNAPSHOT
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    depends_on:
+      - eureka
+    ports:
+      - "8083:8083"
+    networks:
+      - pizza
+  products:
+    image: pizza-project/products:0.0.1-SNAPSHOT
+    environment:
+      - DATABASE_URL=postgres://postgres:Dimik2001.@postgres:5432/products
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka
+    networks:
+      - pizza
+
+  eureka:
+    image: pizza-project/eureka:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8761"
+    networks:
+      - pizza
+
+  main-warehouse:
+    image: pizza-project/main-warehouse:0.0.1-SNAPSHOT
+    ports:
+      - "8086:8086"
+    depends_on:
+      - eureka
+
+    networks:
+      - pizza
+
+  restaurant:
+    image: pizza-project/restaurant:0.0.1-SNAPSHOT
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    ports:
+      - "8085:8085"
+    depends_on:
+      - eureka
+    networks:
+      - pizza
+networks:
+  pizza:
+    driver: bridge

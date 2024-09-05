@@ -20,12 +20,14 @@
     </properties>
 
     <modules>
+        <module>eureka</module>
         <module>main-warehouse</module>
         <module>maker-menu</module>
         <module>products</module>
         <module>restaurant</module>
-
+        <module>site</module>
     </modules>
+   
     <build>
         <plugins>
             <plugin>

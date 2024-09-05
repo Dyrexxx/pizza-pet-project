@@ -10,3 +10,9 @@
 [submodule "maker-menu"]
 	path = maker-menu
 	url = https://github.com/Dyrexxx/maker-menu.git
+[submodule "eureka"]
+	path = eureka
+	url = https://github.com/Dyrexxx/eureka.git
+[submodule "site"]
+	path = site
+	url = https://github.com/Dyrexxx/site.git
