@@ -36,5 +36,23 @@
 
 Документация Swagger api и dto http://localhost:8085/swagger-ui/index.html
 
+Схемы бд:
+1. restaurant: ![image](https://github.com/user-attachments/assets/80c0b263-9a42-4957-9d69-f5be173c0911)
+2. maker-menu: ![image](https://github.com/user-attachments/assets/f2bb6231-6817-4813-b9a2-df83a7b8e18e)
+3. products: ![image](https://github.com/user-attachments/assets/1ef15371-6fdc-4a82-890c-8ac30ae3f0ea)
+
+
+
+
+Точки входа в микросервисы:
+  1. localhost:8081/site - GUI для пользователя, который хочет заказать еду на дом ![image](https://github.com/user-attachments/assets/911c4b5b-f40d-409e-82bc-e585ef479f1f)
+
+  2. localhost:8083/maker - GUI для создателя меню. Здесь храняться данные о всех используемых ингредиентах. Есть возможность создать в меню новое блюдо ![image](https://github.com/user-attachments/assets/72372a42-6d4a-483b-a600-92fd7e162cae)
+
+  3. localhost:8085/restaurant - GUI для действующих ресторанов. Здесь находиться склад с ингредиентами. Бд онлайн-заказов. Бд ожидание пополнения новых ингредиентов на склад ![image](https://github.com/user-attachments/assets/e0212cd5-c02d-46b7-a8a0-c7e8a356f729)
+
+  4. localhost:8086/warehouses - GUI для создания новых доставок новых ингредиентов на склады ресторанов ![image](https://github.com/user-attachments/assets/140d1923-9979-452b-b9b5-c03784ea292b)
+
+
 
 
