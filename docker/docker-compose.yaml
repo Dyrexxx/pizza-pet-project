@@ -1,59 +1,154 @@
 services:
-  database:
+  db-maker-menu:
     image: postgres:16.3
+    container_name: db-maker-menu
     environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "Dimik2001."
+      POSTGRES_DB: maker-menu-dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Dimik2001.
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d maker-menu-dev -p 5432" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
     ports:
-      - "5432:5432"
+      - "5433:5432"
+    networks:
+      pizza:
+        aliases:
+          - "db-maker-menu"
+
+  db-products:
+    image: postgres:16.3
+    container_name: db-products
+    environment:
+      POSTGRES_DB: products-dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Dimik2001.
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d products-dev -p 5432" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5434:5432"
+    networks:
+      pizza:
+        aliases:
+          - "db-products"
+
+  db-restaurant:
+    image: postgres:16.3
+    container_name: db-restaurant
+    environment:
+      POSTGRES_DB: restaurant-dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Dimik2001.
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d restaurant-dev -p 5432" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5435:5432"
+    networks:
+      pizza:
+        aliases:
+          - "db-restaurant"
+
+  restaurant:
+    image: pizza-project/restaurant:0.0.1-SNAPSHOT
+    container_name: restaurant
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - EUREKA_INSTANCE_HOSTNAME=eureka
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-restaurant/restaurant-dev
+      - SPRING_LIQUIBASE_CHANGE-LOG=classpath://db/migrations/changeLog.xml
+    ports:
+      - "8085:8085"
+    depends_on:
+      db-restaurant:
+        condition: service_healthy
+    networks:
+      - pizza
+
+  products:
+    image: pizza-project/products:0.0.1-SNAPSHOT
+    container_name: products
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-products/products-dev
+      - EUREKA_INSTANCE_HOSTNAME=eureka
+      - SPRING_LIQUIBASE_CHANGE-LOG=classpath://db/migrations/changeLog.xml
+    ports:
+      - "8082:8082"
+    depends_on:
+      db-products:
+        condition: service_healthy
+    networks:
+      - pizza
+
   maker-menu:
     image: pizza-project/maker-menu:0.0.1-SNAPSHOT
+    container_name: maker-menu
     environment:
-      - "SPRING_PROFILES_ACTIVE=dev"
+      - EUREKA_INSTANCE_HOSTNAME=eureka
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-maker-menu/maker-menu-dev
+      - SPRING_LIQUIBASE_CHANGE-LOG=classpath://db/migrations/changeLog.xml
     depends_on:
-      - eureka
+      db-maker-menu:
+        condition: service_healthy
     ports:
       - "8083:8083"
     networks:
       - pizza
-  products:
-    image: pizza-project/products:0.0.1-SNAPSHOT
-    environment:
-      - DATABASE_URL=postgres://postgres:Dimik2001.@postgres:5432/products
-    ports:
-      - "8082:8082"
-    depends_on:
-      - eureka
-    networks:
-      - pizza
+
 
   eureka:
     image: pizza-project/eureka:0.0.1-SNAPSHOT
+    container_name: eureka
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - EUREKA_INSTANCE_HOSTNAME=eureka
     ports:
       - "8761:8761"
     networks:
-      - pizza
+      pizza:
+        aliases:
+          - "eureka"
 
   main-warehouse:
     image: pizza-project/main-warehouse:0.0.1-SNAPSHOT
+    container_name: main-warehouse
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - EUREKA_INSTANCE_HOSTNAME=eureka
     ports:
       - "8086:8086"
     depends_on:
-      - eureka
-
+      eureka:
+        condition: service_started
     networks:
-      - pizza
+      pizza:
+        aliases:
+          - "main-warehouse"
 
-  restaurant:
-    image: pizza-project/restaurant:0.0.1-SNAPSHOT
+  site:
+    image: pizza-project/site:0.0.1-SNAPSHOT
+    container_name: site
     environment:
-      - "SPRING_PROFILES_ACTIVE=dev"
+      - SPRING_PROFILES_ACTIVE=dev
+      - EUREKA_INSTANCE_HOSTNAME=eureka
     ports:
-      - "8085:8085"
+      - "8081:8081"
     depends_on:
-      - eureka
+      eureka:
+        condition: service_started
     networks:
-      - pizza
+      pizza:
+        aliases:
+          - "site"
 networks:
   pizza:
     driver: bridge
