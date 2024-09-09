@@ -25,7 +25,10 @@
 2. cd pizza-pet-project/
 3. git submodule update --init --recursive
 4. git submodule update --remote
+
+
 <br><br><br>
+
 **Запуск через dockerCompose:**
 > 1. Перейти в общую директорию pizza-pet-project
 > 2. mvnw clean package dockerfile:build
@@ -38,13 +41,18 @@
 > 1. Открыть общую директорию проекта через idea
 > 2. Запустить spring boot:
    ![image](https://github.com/user-attachments/assets/762a93bf-2629-4316-8d1b-e339c2f11c57)
+
 <br><br><br>
+
 **Документация Swagger api и dto** http://localhost:8085/swagger-ui/index.html
+
 <br><br><br>
+
 **Схемы бд:**
 > 1. restaurant: ![image](https://github.com/user-attachments/assets/80c0b263-9a42-4957-9d69-f5be173c0911)
 > 2. maker-menu: ![image](https://github.com/user-attachments/assets/f2bb6231-6817-4813-b9a2-df83a7b8e18e)
 > 3. products: ![image](https://github.com/user-attachments/assets/1ef15371-6fdc-4a82-890c-8ac30ae3f0ea)
+
 <br><br><br>
 
 
