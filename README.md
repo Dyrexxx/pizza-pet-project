@@ -22,11 +22,8 @@
 <br><br><br>
 **Склонировать проект**
 1. git clone https://github.com/Dyrexxx/pizza-pet-project.git
-Перейти в общую директорию проекта
 2. cd pizza-pet-project/
-Добавить файлы для подмодулей
 3. git submodule update --init --recursive
-Обновить подмодули из удаленного репозитория
 4. git submodule update --remote
 <br><br><br>
 **Запуск через dockerCompose:**
