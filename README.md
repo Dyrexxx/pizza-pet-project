@@ -31,7 +31,9 @@
 > 2. mvnw clean package dockerfile:build
 > 3. cd docker/
 > 4. docker-compose up -d
+
 <br><br><br>
+
 **Обычный запуск:**
 > 1. Открыть общую директорию проекта через idea
 > 2. Запустить spring boot:
