@@ -8,6 +8,7 @@
   > 6. postgreSQL
 
 **Схема взаимодействия микросервисов (gateway, courier на данный момент до конца не реализованы, поэтому не включены в проект):**
+<br>
 ![image](https://github.com/user-attachments/assets/77459a7b-3be4-4424-9980-1c0b47cf01d9)
 
 
