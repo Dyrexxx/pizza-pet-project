@@ -6,11 +6,12 @@
   > 4. liquibase
   > 5. docker
   > 6. postgreSQL
+<br><br><br>
 
 **Схема взаимодействия микросервисов (gateway, courier на данный момент до конца не реализованы, поэтому не включены в проект):**
 <br>
 ![image](https://github.com/user-attachments/assets/77459a7b-3be4-4424-9980-1c0b47cf01d9)
-
+<br><br><br>
 
      
 **Перед запуском убедительная просьба иметь в доступе пустые базы данных на порту 5432:**
@@ -18,7 +19,7 @@
   > 2. products-dev
   > 3. maker-menu-dev
 
-
+<br><br><br>
 **Склонировать проект**
 1. git clone https://github.com/Dyrexxx/pizza-pet-project.git
 **Перейти в общую директорию проекта**
@@ -27,25 +28,25 @@
 3. git submodule update --init --recursive
 **Обновить подмодули из удаленного репозитория**
 4. git submodule update --remote
-
+<br><br><br>
 **Запуск через dockerCompose:**
 > 1. Перейти в общую директорию pizza-pet-project
 > 2. mvnw clean package dockerfile:build
 > 3. cd docker/
 > 4. docker-compose up -d
-
+<br><br><br>
 **Обычный запуск:**
 > 1. Открыть общую директорию проекта через idea
 > 2. Запустить spring boot:
    ![image](https://github.com/user-attachments/assets/762a93bf-2629-4316-8d1b-e339c2f11c57)
-
+<br><br><br>
 **Документация Swagger api и dto** http://localhost:8085/swagger-ui/index.html
-
+<br><br><br>
 **Схемы бд:**
 > 1. restaurant: ![image](https://github.com/user-attachments/assets/80c0b263-9a42-4957-9d69-f5be173c0911)
 > 2. maker-menu: ![image](https://github.com/user-attachments/assets/f2bb6231-6817-4813-b9a2-df83a7b8e18e)
 > 3. products: ![image](https://github.com/user-attachments/assets/1ef15371-6fdc-4a82-890c-8ac30ae3f0ea)
-
+<br><br><br>
 
 
 
